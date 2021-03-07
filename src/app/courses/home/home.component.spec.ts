@@ -3,9 +3,9 @@ import { waitForAsync, TestBed, ComponentFixture } from '@angular/core/testing';
 import { CoursesModule } from './../courses.module';
 
 // import {CoursesModule} from '../courses.module';
-import {DebugElement} from '@angular/core';
+import { DebugElement } from '@angular/core';
 
-import {HomeComponent} from './home.component';
+import { HomeComponent } from './home.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { setupCourses } from '../common/setup-test-data';
 import { By } from '@angular/platform-browser';
@@ -26,7 +26,7 @@ import { of } from 'rxjs';
 describe('HomeComponent', () => {
 
   let fixture: ComponentFixture<HomeComponent>;
-  let component:HomeComponent;
+  let component: HomeComponent;
   let el: DebugElement;
   let coursesService: any;
 
@@ -36,24 +36,24 @@ describe('HomeComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports:[
+      imports: [
         CoursesModule,
         NoopAnimationsModule // fake animation module
       ],
-      providers:[
+      providers: [
         {
           provide: CoursesService,
           useValue: coursesServiceSpy
         }
       ]
     }).compileComponents()
-    .then(() => {
-      fixture = TestBed.createComponent(HomeComponent);
-      component = fixture.componentInstance;
-      el = fixture.debugElement;
-      coursesService = TestBed.inject(CoursesService);
+      .then(() => {
+        fixture = TestBed.createComponent(HomeComponent);
+        component = fixture.componentInstance;
+        el = fixture.debugElement;
+        coursesService = TestBed.inject(CoursesService);
 
-    });
+      });
 
   }));
 
@@ -76,7 +76,7 @@ describe('HomeComponent', () => {
 
   it("should display only advanced courses", () => {
 
-      pending();
+    pending();
 
   });
 
