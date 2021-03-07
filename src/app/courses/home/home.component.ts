@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Course} from "../model/course";
 import {Observable} from "rxjs";
 import {CoursesService} from "../services/courses.service";
-import {map} from "rxjs/operators";
+import {filter, map} from "rxjs/operators";
 import {sortCoursesBySeqNo} from './sort-course-by-seq';
 
 @Component({
@@ -17,7 +17,6 @@ export class HomeComponent implements OnInit {
     advancedCourses$: Observable<Course[]>;
 
     constructor(private coursesService: CoursesService) {
-
     }
 
     ngOnInit() {
@@ -31,9 +30,9 @@ export class HomeComponent implements OnInit {
 
       const courses$ = this.coursesService.findAllCourses();
 
-      this.beginnerCourses$ = this.filterByCategory(courses$, 'BEGINNER');
+      this.beginnerCourses$ = this.filterByCategory(courses$, 'BEGINNER').pipe(filter(x => !!x.length));
 
-      this.advancedCourses$ = this.filterByCategory(courses$, 'ADVANCED');
+      this.advancedCourses$ = this.filterByCategory(courses$, 'ADVANCED').pipe(filter(x => !!x.length));;
 
     }
 
